@@ -1,19 +1,18 @@
 package com.ubermensch.ruangamanv10
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.ubermensch.ruangamanv10.databinding.FragmentRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRegisterBinding
+
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+
+        binding = FragmentRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener { finish() }
@@ -24,14 +23,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun prosesDaftar() {
-        val nama      = binding.etNama.text.toString().trim()
-        val nik       = binding.etNik.text.toString().trim()
-        val email     = binding.etEmailRegister.text.toString().trim()
-        val noHp      = binding.etNoHp.text.toString().trim()
-        val password  = binding.etPasswordRegister.text.toString()
+        val nama       = binding.etNama.text.toString().trim()
+        val nik        = binding.etNik.text.toString().trim()
+        val email      = binding.etEmailRegister.text.toString().trim()
+        val noHp       = binding.etNoHp.text.toString().trim()
+        val password   = binding.etPasswordRegister.text.toString()
         val konfirmasi = binding.etKonfirmasiPassword.text.toString()
 
-        // Reset semua error
         binding.tilNama.error              = null
         binding.tilNik.error               = null
         binding.tilEmailRegister.error     = null
@@ -39,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.tilPasswordRegister.error  = null
         binding.tilKonfirmasiPassword.error = null
 
-        // Validasi satu per satu
         if (nama.isEmpty()) {
             binding.tilNama.error = "Nama tidak boleh kosong"; return
         }
@@ -63,7 +60,6 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        // Simpan sementara di SharedPreferences
         val prefs = getSharedPreferences("ruangaman_users", MODE_PRIVATE)
         prefs.edit()
             .putString("user_email_$email", password)
@@ -71,6 +67,6 @@ class RegisterActivity : AppCompatActivity() {
             .apply()
 
         Toast.makeText(this, "Registrasi berhasil! Silakan login.", Toast.LENGTH_LONG).show()
-        finish() // Kembali ke halaman login
+        finish()
     }
 }

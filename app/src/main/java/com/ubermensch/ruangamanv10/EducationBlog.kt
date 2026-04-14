@@ -51,7 +51,7 @@ class EducationBlog : Fragment() {
             ),
             EducationItem(
                 "Dampak bullying bagi korban",
-                "Bullying dapat memengaruhi kesehatan mental, emosional, dan akademik korban.",
+                "Bullying dapat memengaruhi kesehatan mental, emosional, and akademik korban.",
                 "Korban bullying dapat mengalami rasa takut, cemas, depresi, sulit berkonsentrasi, hingga menurunnya prestasi belajar. Oleh karena itu, penting untuk memberi dukungan dan menciptakan lingkungan yang aman bagi semua orang.",
                 "Admin Ruang Aman",
                 "14 April 2026"
@@ -66,7 +66,7 @@ class EducationBlog : Fragment() {
             detailFragment.arguments = bundle
 
             parentFragmentManager.beginTransaction()
-                .replace(R.id.home_container, detailFragment)
+                .replace(R.id.nav_host_fragment, detailFragment)
                 .addToBackStack(null)
                 .commit()
         }

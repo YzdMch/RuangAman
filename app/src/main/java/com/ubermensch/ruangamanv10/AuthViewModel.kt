@@ -4,21 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-sealed class Result {
-    object Success : Result()
-    data class Error(val message: String) : Result()
+sealed class LoginResult {
+    object Success : LoginResult()
+    data class Error(val message: String) : LoginResult()
 }
 
 class AuthViewModel : ViewModel() {
 
-    private val _loginResult = MutableLiveData<Result>()
-    val loginResult: LiveData<Result> = _loginResult
+    private val _loginResult = MutableLiveData<LoginResult>()
+    val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(email: String, pass: String) {
+        // Simple logic for development/demo
         if (email.isNotEmpty() && pass.length >= 6) {
-            _loginResult.value = Result.Success
+            _loginResult.value = LoginResult.Success
         } else {
-            _loginResult.value = Result.Error("Email atau Password salah!")
+            _loginResult.value = LoginResult.Error("Email atau Password salah!")
         }
     }
 }

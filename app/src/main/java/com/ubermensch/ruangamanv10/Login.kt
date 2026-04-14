@@ -35,12 +35,13 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginResult.observe(this) { result ->
             when (result) {
-                is Result.Success -> {
-                    val intent = Intent(this, FormPendataanActivity::class.java)
+                is LoginResult.Success -> {
+                    // Berpindah ke MainActivity yang menampung HomePage
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
-                is Result.Error -> {
+                is LoginResult.Error -> {
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
                 }
             }
